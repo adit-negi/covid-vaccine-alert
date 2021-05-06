@@ -19,7 +19,6 @@ while True:
     
     response =requests.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode='+ pincode + '&date='+date, headers = headers)
     response_json = json.loads(response.text)
-    print(response_json)
     for center in response_json['centers']:
         for session in center['sessions']:
             if session['available_capacity']>0 and session['min_age_limit']>=18:
