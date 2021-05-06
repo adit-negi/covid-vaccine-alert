@@ -20,13 +20,15 @@ while True:
         month = str(month)
     year =str(datetime.now().year)
     date = day + '-' + month + '-' + year
-    
-    response =requests.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode='+ pincode + '&date='+date, headers = headers)
-    response_json = json.loads(response.text)
-    for center in response_json['centers']:
-        for session in center['sessions']:
-            if session['available_capacity']>0 and session['min_age_limit']>=18:
-                send_mail('Vaccine Slot Open Now', center['name'])
+    try:
+        response =requests.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode='+ pincode + '&date='+date, headers = headers)
+        response_json = json.loads(response.text)
+        for center in response_json['centers']:
+            for session in center['sessions']:
+                if session['available_capacity']>0 and session['min_age_limit']>=18:
+                    send_mail('Vaccine Slot Open Now', center['name'])
+    except:
+        pass
 
     time.sleep(300)
 
