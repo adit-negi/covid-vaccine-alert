@@ -11,9 +11,13 @@ while True:
     day = (datetime.now().day) 
     if day< 10:
         day = str(0)+ str(day)
+    else:
+        day = str(day)
     month = (datetime.now().month)
     if month<10: 
         month =str(0)+ str(month)
+    else:
+        month = str(month)
     year =str(datetime.now().year)
     date = day + '-' + month + '-' + year
     
